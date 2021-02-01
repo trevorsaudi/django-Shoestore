@@ -29,7 +29,12 @@
 			<ul class="navigation">
 			    <li><a href="{% url 'home' %}">Home</a></li>
 			    <li><a href="{% url 'store' %}">Products</a></li>
-			    <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="#" style="padding: 1px 20px;
+                    border: 1px solid #333; color: #96d11b;">Login</a></li>
+                <li><a href="{% url 'cart' %}">
+                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+                </a></li>
 			</ul>
 		</header>
 
