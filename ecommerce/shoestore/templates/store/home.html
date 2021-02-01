@@ -27,9 +27,9 @@
 			<!-- <a href="#"><img src="{% static 'img/logo-name.png' %}" class="logo" alt="logo"></a> -->
 			<div class="toggle" onclick="toggleMenu();"></div>
 			<ul class="navigation">
-			    <li><a href="#">Home</a></li>
-			    <li><a href="#">Products</a></li>
-			    <li><a href="#">Contact</a></li>
+			    <li><a href="{% url 'home' %}">Home</a></li>
+			    <li><a href="{% url 'store' %}">Products</a></li>
+			    <li><a href="{% url 'contact' %}">Contact</a></li>
 			</ul>
 		</header>
 
@@ -38,7 +38,7 @@
 			<div class="textBox">
 				<h2>Everyday<span>Kicks</span></h2>
 				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque sit quidem, consequatur, perferendis fugit doloremque ea optio architecto. Sequi deserunt illum dolores aliquid similique at corrupti dolorum, natus eligendi voluptate.</p>
-				<a href="#">Shop with us</a>
+				<a href="{% url 'store' %}">Shop with us</a>
 			</div>
 
 			<div class="imgBox">
