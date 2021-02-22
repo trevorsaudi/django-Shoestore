@@ -38,6 +38,10 @@ def home(request):
     context = {}
     return render(request, 'store/home.html', context)
 
+def home2(request):
+    context = {}
+    return render(request, 'store/home2.html', context)
+
 def contact(request):
     context = {}
     return render(request, 'store/contact.html', context)
