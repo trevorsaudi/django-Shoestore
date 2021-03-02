@@ -2,15 +2,14 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 import datetime
-from .models import * 
+from store.models import *
 from .utils import cookieCart, cartData, guestOrder
 
 def store(request):
 	data = cartData(request)
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+	items = []
+	order = {'get_cart_total':0, 'get_cart_items':0 }
 
 	products = Product.objects.all()
 	context = {'products':products, 'cartItems':cartItems}
@@ -20,11 +19,15 @@ def store(request):
 def cart(request):
 	data = cartData(request)
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		items = order.orderitem_set.all()
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	else:
+		items = []
+		order = {'get_cart_total':0, 'get_cart_items':0 }
+	context = {'items':items, 'order':order}
 	return render(request, 'store/cart.html', context)
 
 def home(request):
@@ -46,10 +49,14 @@ def contact(request):
 def checkout(request):
 	data = cartData(request)
 	
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		items = order.orderitem_set.all()
 
+	else:
+		items = []
+		order = {'get_cart_total':0, 'get_cart_items':0 }
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/checkout.html', context)
 
