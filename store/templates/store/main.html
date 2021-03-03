@@ -17,7 +17,14 @@
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <script src="https://use.fontawesome.com/82323a832a.js"></script>
+      <style>
+		  #hello-message{
+			  font-size: 18px;
+			  color:#000;
+			  margin-right: 20px
+		  }
+	  </style>
+		  <script src="https://use.fontawesome.com/82323a832a.js"></script>
 
 	  <script type="text/javascript">
 		var user = '{{request.user}}'
@@ -88,13 +95,17 @@
                 </div>
 
                 <ul class="list-unstyled components">
-
+					<li>Hello, {{request.user}} </li>
                     <li class="active">
                         <a href="{% url 'home' %}">Home</a>
                     </li>
 
 					<li class="active">
-                        <a href="{% url 'home' %}">Register</a>
+                        <a href="{% url 'registration' %}">Register</a>
+                    </li>
+
+					<li class="active">
+                        <a href="{% url 'login' %}">Login</a>
                     </li>
                  
                  
@@ -128,17 +139,22 @@
                     <div class="full">
                         <div class="right_header_info">
                             <ul>
+							
                                 <li class="dinone">Contact Us : <img style="margin-right: 15px;margin-left: 15px;" src="{% static 'images/phone_icon.png' %}" alt="#"><a href="#">0703913906</a></li>
                                 <li class="dinone"><img style="margin-right: 15px;" src="{% static 'images/mail_icon.png' %}" alt="#"><a href="#">kicks@gmail.com</a></li>
                                 <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="{% static 'images/location_icon.png' %}" alt="#"><a href="#">Nairobi, KE</a></li>
-                                 <li class="button_user"><a class="button active" href="#">Login</a> 
+                               
+								<span></span>
+								<!-- <li class="button_user"><a class="button active" href="{% url 'login'%}">Login</a>  -->
+									<li class="button_user"><a class="button active" href="{% url 'logout' %}">Logout</a> 
+										<li>Hello, {{request.user}} </li>
 									<li><a href="{% url 'cart' %}">
 										<li><i class="fa fa-shopping-cart" style="font-size: 24px;" aria-hidden="true"></i></li>
 									</a></li>
 									
 									
 									<!-- <a class="button" href="#">Register</a></li>  -->
-                                <li><img style="margin-right: 15px;" src="{% static 'images/search_icon.png' %}" alt="#"></li>
+                                <!-- <li><img style="margin-right: 15px;" src="{% static 'images/search_icon.png' %}" alt="#"></li> -->
                                 <li>
                                     <button type="button" id="sidebarCollapse">
                                         <img src="{% static 'images/menu_icon.png' %}" alt="#">
@@ -152,6 +168,7 @@
         </div>
     </header>
 
+ <!-- end header -->
 
  
 	{% block content %}
@@ -160,11 +177,82 @@
 	{% endblock content %}
 
 
-</body>
-    <!-- end header -->
-
+  	  <!-- footer -->
+	  <footer >
+		  <div class="footer">
+			  <div class="container-fluid">
+				  <div class="row">
+					<div class=" col-md-12">
+					  <h2>Request  A<strong class="white"> Call  Back</strong></h2>
+					</div>
+					  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+						
+						  <form class="main_form" action="https://formspree.io/f/xgepjrbo" method="POST">
+							  <div class="row">
+							   
+								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									  <input class="form-control" placeholder="Name" type="text" name="Name">
+								  </div>
+								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									  <input class="form-control" placeholder="Email" type="text" name="Email">
+								  </div>
+								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									  <input class="form-control" placeholder="Phone" type="text" name="Phone">
+								  </div>
+								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									  <textarea class="textarea" placeholder="Message" type="text" name="Message"></textarea>
+								  </div>
+								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									  <button class="send">Send</button>
+								  </div>
+							  </div>
+						  </form>
+					  </div>
+					  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+						  <div class="img-box">
+							  <figure><img src="{% static 'img/logo-name.ico' %}" alt="img" /></figure>
+						  </div>
+					  </div>
+				  </div>
+				  <div class="row">
+					  <div class="col-md-12">
+						  <div class="footer_logo">
+							<!-- <a href="index.html"><img src="images/logo1.jpg" alt="logo" /></a> -->
+						  </div>
+					  </div>
+					  <div class="col-md-12">
+						  <ul class="lik">
+							
+							  <li class="active"> <a href="{% url 'home' %}">Home</a></li>
+							  <li> <a href="{% url 'about' %}">About</a></li>
+							  <li> <a href="{% url 'blog' %}">Blog</a></li>
+							  <li> <a href="{% url 'contact' %}">Contact us</a></li>
+							 
+						  </ul>
+					  </div>
+					  <div class="col-md-12">
+						  <div class="new">
+							  <h3>Newsletter</h3>
+							  <form class="newtetter">
+								  <input class="tetter" placeholder="Your email" type="text" name="Your email">
+								  <button class="submit">Subscribe</button>
+							  </form>
+							  <br><br>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  
+		  </div>
+	  </footer>
+	  <!-- end footer -->
 
 	
+
+
+
+	  
+  
 
   <!-- Javascript files-->
   <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -228,82 +316,6 @@
 		 })
 	   })
 	</script>
-
-</body>
-
-</html>
-
-
-  </div>
-	  <!-- footer -->
-	  <fooetr>
-		  <div class="footer">
-			  <div class="container-fluid">
-				  <div class="row">
-					<div class=" col-md-12">
-					  <h2>Request  A<strong class="white"> Call  Back</strong></h2>
-					</div>
-					  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-						
-						  <form class="main_form">
-							  <div class="row">
-							   
-								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-									  <input class="form-control" placeholder="Name" type="text" name="Name">
-								  </div>
-								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-									  <input class="form-control" placeholder="Email" type="text" name="Email">
-								  </div>
-								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-									  <input class="form-control" placeholder="Phone" type="text" name="Phone">
-								  </div>
-								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-									  <textarea class="textarea" placeholder="Message" type="text" name="Message"></textarea>
-								  </div>
-								  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-									  <button class="send">Send</button>
-								  </div>
-							  </div>
-						  </form>
-					  </div>
-					  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-						  <div class="img-box">
-							  <figure><img src="{% static 'img/logo-name.ico' %}" alt="img" /></figure>
-						  </div>
-					  </div>
-				  </div>
-				  <div class="row">
-					  <div class="col-md-12">
-						  <div class="footer_logo">
-							<!-- <a href="index.html"><img src="images/logo1.jpg" alt="logo" /></a> -->
-						  </div>
-					  </div>
-					  <div class="col-md-12">
-						  <ul class="lik">
-							  <li class="active"> <a href="{% url 'home' %}">Home</a></li>
-							  <li> <a href="{% url 'about' %}">About</a></li>
-							  <li> <a href="{% url 'blog' %}">Blog</a></li>
-							  <li> <a href="{% url 'contact' %}">Contact us</a></li>
-						  </ul>
-					  </div>
-					  <div class="col-md-12">
-						  <div class="new">
-							  <h3>Newsletter</h3>
-							  <form class="newtetter">
-								  <input class="tetter" placeholder="Your email" type="text" name="Your email">
-								  <button class="submit">Subscribe</button>
-							  </form>
-							  <br>
-						  </div>
-					  </div>
-				  </div>
-			  </div>
-			  
-		  </div>
-	  </footer>
-	  <!-- end footer -->
-	  
-  
 	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>
